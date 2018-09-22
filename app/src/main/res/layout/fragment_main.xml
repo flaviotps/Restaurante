@@ -120,30 +120,48 @@
         app:theme="@style/ThemeOverlay.AppCompat.Dark"
         app:title="">
 
-        <LinearLayout
+        <android.support.constraint.ConstraintLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:gravity="center"
             android:orientation="horizontal">
 
-            <Space
+            <de.hdodenhof.circleimageview.CircleImageView
+
+                android:id="@+id/circleImageViewToolbar"
                 android:layout_width="@dimen/image_final_width"
-                android:layout_height="@dimen/image_final_width" />
+                android:layout_height="@dimen/image_final_width"
+                android:layout_gravity="center_horizontal"
+
+
+                android:adjustViewBounds="false"
+                android:cropToPadding="false"
+                android:src="@drawable/icone"
+                app:border_color="@android:color/white"
+                app:border_width="2dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/main.textview.title" />
 
             <TextView
                 android:id="@+id/main.textview.title"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
                 android:gravity="center_vertical"
                 android:text="@string/quila_name2"
                 android:textColor="@android:color/white"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/circleImageViewToolbar"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        </LinearLayout>
+        </android.support.constraint.ConstraintLayout>
     </android.support.v7.widget.Toolbar>
 
     <de.hdodenhof.circleimageview.CircleImageView
 
+        android:id="@+id/circleImageView"
         android:layout_width="@dimen/image_width"
         android:layout_height="@dimen/image_width"
         android:layout_gravity="center_horizontal"
@@ -152,7 +170,7 @@
         app:border_width="2dp"
         app:finalHeight="@dimen/image_final_width"
         app:finalYPosition="2dp"
-        app:layout_behavior="com.flaviotps.restaurante.AvatarImageBehavior"
+        app:layout_behavior="com.flaviotps.restaurante.custom.AvatarImageBehavior"
         app:startHeight="2dp"
         app:startToolbarPosition="2dp"
         app:startXPosition="2dp"
