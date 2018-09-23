@@ -1,5 +1,6 @@
 package com.flaviotps.restaurante.activities;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
@@ -61,7 +62,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 return true;
 
             case R.id.bottom_menu_location:
-
+                startActivity(new Intent(this, MenuActivity.class));
                 return true;
 
 
