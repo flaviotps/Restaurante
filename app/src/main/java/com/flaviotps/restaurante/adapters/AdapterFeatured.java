@@ -10,20 +10,20 @@ import android.view.ViewGroup;
 
 import com.bumptech.glide.Glide;
 import com.flaviotps.restaurante.R;
-import com.flaviotps.restaurante.models.FeaturedModel;
+import com.flaviotps.restaurante.models.ModelProduct;
 
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class FeaturedAdapter extends RecyclerView.Adapter<FeaturedAdapter.FeaturedViewHolder> {
+public class AdapterFeatured extends RecyclerView.Adapter<AdapterFeatured.FeaturedViewHolder> {
 
 
-    private List<FeaturedModel> featuredModels;
+    private List<ModelProduct> modelProducts;
     private Activity activity;
 
-    public FeaturedAdapter(List<FeaturedModel> featuredModels, Activity activity) {
-        this.featuredModels = featuredModels;
+    public AdapterFeatured(List<ModelProduct> modelProducts, Activity activity) {
+        this.modelProducts = modelProducts;
         this.activity = activity;
     }
 
@@ -41,13 +41,13 @@ public class FeaturedAdapter extends RecyclerView.Adapter<FeaturedAdapter.Featur
     @Override
     public void onBindViewHolder(@NonNull FeaturedViewHolder holder, int position) {
 
-        Glide.with(activity).load(featuredModels.get(position).image_src).into(holder.featuredImage);
+        Glide.with(activity).load(modelProducts.get(position).image_src).into(holder.featuredImage);
 
     }
 
     @Override
     public int getItemCount() {
-        return featuredModels.size();
+        return modelProducts.size();
     }
 
 

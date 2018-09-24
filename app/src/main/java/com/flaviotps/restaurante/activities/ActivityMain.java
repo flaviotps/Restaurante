@@ -11,10 +11,11 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.flaviotps.restaurante.R;
-import com.flaviotps.restaurante.fragments.MainFragment;
-import com.flaviotps.restaurante.fragments.NotificationsFragment;
+import com.flaviotps.restaurante.fragments.FragmentMenu;
+import com.flaviotps.restaurante.fragments.FragmentMain;
+import com.flaviotps.restaurante.fragments.FragmentNotifications;
 
-public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
+public class ActivityMain extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
     private FragmentManager fm;
     private BottomNavigationView navigation;
@@ -37,12 +38,12 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         setContentView(R.layout.activity_main);
 
         bindActivity();
-        changeFragment(new MainFragment());
+        changeFragment(new FragmentMain());
 
     }
 
 
-    private void changeFragment(Fragment fragment) {
+    public void changeFragment(Fragment fragment) {
         FragmentTransaction ft = fm.beginTransaction();
         ft.replace(R.id.fragmentContainer, fragment);
         ft.commit();
@@ -55,14 +56,14 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         switch (item.getItemId()) {
 
             case R.id.bottom_menu_principal:
-                changeFragment(new MainFragment());
+                changeFragment(new FragmentMain());
                 return true;
             case R.id.bottom_menu_notification:
-                changeFragment(new NotificationsFragment());
+                changeFragment(new FragmentNotifications());
                 return true;
 
             case R.id.bottom_menu_location:
-                startActivity(new Intent(this, MenuActivity.class));
+                startActivity(new Intent(this, ActivityMenu.class));
                 return true;
 
 

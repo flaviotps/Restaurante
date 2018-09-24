@@ -1,10 +1,10 @@
 package com.flaviotps.restaurante.models;
 
-public class FeaturedModel {
+public class ModelProduct {
 
     public String image_src;
 
-    public FeaturedModel(String image_src) {
+    public ModelProduct(String image_src) {
         this.image_src = image_src;
     }
 

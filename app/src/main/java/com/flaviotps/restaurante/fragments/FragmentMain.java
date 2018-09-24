@@ -1,8 +1,10 @@
 package com.flaviotps.restaurante.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.AppBarLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -18,12 +20,14 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.flaviotps.restaurante.R;
+import com.flaviotps.restaurante.activities.ActivityMain;
+import com.flaviotps.restaurante.activities.ActivityMenu;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
 
-public class MainFragment extends Fragment
-        implements AppBarLayout.OnOffsetChangedListener {
+public class FragmentMain extends Fragment
+        implements AppBarLayout.OnOffsetChangedListener, View.OnClickListener {
 
     private static final float PERCENTAGE_TO_SHOW_TITLE_AT_TOOLBAR = 0.9f;
     private static final float PERCENTAGE_TO_HIDE_TITLE_DETAILS = 0.3f;
@@ -40,6 +44,7 @@ public class MainFragment extends Fragment
     private View fragmentView;
     private CircleImageView circleImageViewToolbar;
     private CircleImageView circleImageView;
+    private int[] menuLayoutButtons = {R.id.menu_food, R.id.menu_event, R.id.menu_loyalty};
 
     private FragmentManager mFragmentManager;
 
@@ -59,15 +64,14 @@ public class MainFragment extends Fragment
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         fragmentView = inflater.inflate(R.layout.fragment_main, container, false);
 
-
         bindFragment();
-
 
         mAppBarLayout.addOnOffsetChangedListener(this);
 
         mToolbar.inflateMenu(R.menu.menu_main);
 
         startAlphaAnimation(mTitle, 0, View.INVISIBLE);
+
         return fragmentView;
     }
 
@@ -80,8 +84,19 @@ public class MainFragment extends Fragment
         mFrameLayout = fragmentView.findViewById(R.id.fragmentContainer);
         circleImageViewToolbar = fragmentView.findViewById(R.id.circleImageViewToolbar);
         circleImageView = fragmentView.findViewById(R.id.circleImageView);
+
+        for (int i = 0; i < menuLayoutButtons.length; i++) {
+            ConstraintLayout constraintLayout = fragmentView.findViewById(menuLayoutButtons[i]);
+            constraintLayout.setOnClickListener(this);
+        }
+
     }
 
+
+    private void changeFragment(Fragment fragment) {
+        ActivityMain activityMenu = (ActivityMain) getActivity();
+        activityMenu.changeFragment(fragment);
+    }
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
@@ -135,5 +150,19 @@ public class MainFragment extends Fragment
                 mIsTheTitleContainerVisible = true;
             }
         }
+    }
+
+    @Override
+    public void onClick(View v) {
+
+        switch (v.getId()) {
+            case R.id.menu_food:
+                startActivity(new Intent(getActivity(), ActivityMenu.class));
+                break;
+            case R.id.menu_loyalty:
+                changeFragment(new FragmentLoyalty());
+                break;
+        }
+
     }
 }

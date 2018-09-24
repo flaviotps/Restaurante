@@ -10,15 +10,21 @@ import android.view.ViewGroup;
 
 import com.flaviotps.restaurante.R;
 
-public class NotificationsFragment extends Fragment {
+import antonkozyriatskyi.circularprogressindicator.CircularProgressIndicator;
+
+public class FragmentLoyalty extends Fragment {
 
     private View fragmentView;
+    private CircularProgressIndicator circularProgress;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        fragmentView = inflater.inflate(R.layout.fragment_notifications, container, false);
+        fragmentView = inflater.inflate(R.layout.fragment_loyality, container, false);
+        circularProgress = fragmentView.findViewById(R.id.circular_progress);
+        circularProgress.setProgress(5000, 10000);
+
 
         return fragmentView;
     }
